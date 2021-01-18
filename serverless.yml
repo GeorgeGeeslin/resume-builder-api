@@ -42,7 +42,7 @@ provider:
 #      Action:
 #        - lambda:InvokeFunction
 #        - lambda:InvokeAsync
-#      Resource: "*"     
+#      Resource: "*"    
 
 functions:
   create:
@@ -92,18 +92,56 @@ functions:
 
   downloadPDF:
     handler: api/downloadPDF.main
+    layers:
+      - arn:aws:lambda:us-east-1:584518215840:layer:chrome-aws-lambda:1 
+      # - arn:aws:lambda:us-east-1:764866452798:layer:chrome-aws-lambda:22    
     events:
       - http:
           path: resume/download
           method: post
           cors: true
           authorizer: aws_iam
-#    timeout: 30
-#    memorySize: 2048
-#    layers:
-#      - arn:aws:lambda:us-east-1:584518215840:layer:headless-chrome:1
+    timeout: 30
+    memorySize: 2048
+       
+
 
 # Create our resources with separate CloudFormation templates
 resources:
   # API Gateway Errors
-  - ${file(resources/api-gateway-errors.yml)}          
+  - ${file(resources/api-gateway-errors.yml)}
+
+custom:
+  bundle:
+    sourcemaps: true                # Enable source maps
+    caching: true                   # Enable Webpack caching
+    stats: false                    # Don't print out any Webpack output
+    linting: true                   # Enable linting as a part of the build process
+    # disableForkTsChecker: false     # Disable the ForkTsChecker plugin, more below
+    # tsConfig: "tsconfig.json"       # Path to your 'tsconfig.json', if it's not in the root
+    # forceInclude:                   # Optional list of NPM packages that need to be included
+      # - mysql                         # Only necessary if packages are included dynamically
+    # ignorePackages:                 # Ignore building any of the following packages
+      # - hiredis                       # For ex, hiredis needs to be ignored if using redis
+    # externals:                      # Set non Webpack compatible packages as externals
+      # - isomorphic-webcrypto          # They'll be included in the node_modules/, more below
+    forceExclude:                   # Don't include these in the package
+      - chrome-aws-lambda             # Because it'll be provided through a Lambda Layer
+    # fixPackages:                    # Include fixes for specific packages
+      # - "formidable@1.x"              # For ex, formidable@1.x doesn't work by default with Webpack
+    # copyFiles:                      # Copy any additional files to the generated package
+      # - from: 'public/*'              # Where the files are currently
+        # to: './'                      # Where in the package should they go
+    # aliases:                        # Create an alias to 'import' modules easily with a custom path
+      # - Lib: custom-lib/src/lib       # For ex, replace the long 'custom-lib/src/lib' with 'Lib'
+    # concatText:                     # Concatenate text files into one file on the generated package
+      # - files: 'schema/*.txt'         # Where the files that need to be concatenated are currently located
+        # outputPath: './'              # Where the concatenated file should go in the package
+        # name: 'schema.txt'            # The name the the concatenated file should have
+    # packager: npm                   # Specify a packager, 'npm' or 'yarn'. Defaults to 'npm'.
+    # packagerOptions:                # Run a custom script in the package process
+      # scripts:                        # https://github.com/serverless-heaven/serverless-webpack#custom-scripts
+        # - echo hello > test
+    # rawFileExtensions:              # An array of file extensions to import using the Webpack raw-loader.
+      # - csv                         # Defaults to ['pem', 'txt']
+       
