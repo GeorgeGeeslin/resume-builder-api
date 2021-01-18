@@ -1,5 +1,4 @@
-// import chromium from "chrome-aws-lambda";
-const chromium = require('chrome-aws-lambda');
+import chromium from "chrome-aws-lambda";
 import handler from "../libs/handler-lib";
 
 export const main = handler(async (event, context) => {

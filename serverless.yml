@@ -94,7 +94,6 @@ functions:
     handler: api/downloadPDF.main
     layers:
       - arn:aws:lambda:us-east-1:584518215840:layer:chrome-aws-lambda:1 
-      # - arn:aws:lambda:us-east-1:764866452798:layer:chrome-aws-lambda:22    
     events:
       - http:
           path: resume/download
