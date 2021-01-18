@@ -1,0 +1,8 @@
+{
+    "body": "{\"data\":\"<html><body><div>TEST TEST TEST</div></body></html>\"}",
+    "requestContext": {
+        "identity": {
+          "cognitoIdentityId": "USER-SUB-1234"
+        }
+      }
+}
