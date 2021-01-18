@@ -37,7 +37,12 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
         - dynamodb:DescribeTable
-      Resource: "arn:aws:dynamodb:us-east-1:*:*"  
+      Resource: "arn:aws:dynamodb:us-east-1:*:*"
+#    - Effect: Allow
+#      Action:
+#        - lambda:InvokeFunction
+#        - lambda:InvokeAsync
+#      Resource: "*"     
 
 functions:
   create:
@@ -84,6 +89,19 @@ functions:
           method: delete
           cors: true
           authorizer: aws_iam
+
+  downloadPDF:
+    handler: api/downloadPDF.main
+    events:
+      - http:
+          path: resume/download
+          method: post
+          cors: true
+          authorizer: aws_iam
+#    timeout: 30
+#    memorySize: 2048
+#    layers:
+#      - arn:aws:lambda:us-east-1:584518215840:layer:headless-chrome:1
 
 # Create our resources with separate CloudFormation templates
 resources:
