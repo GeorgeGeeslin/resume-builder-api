@@ -101,9 +101,7 @@ functions:
           cors: true
           authorizer: aws_iam
     timeout: 30
-    memorySize: 2048
-       
-
+    memorySize: 2048    
 
 # Create our resources with separate CloudFormation templates
 resources:
