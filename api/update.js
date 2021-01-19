@@ -14,9 +14,13 @@ export const main = handler(async (event, context) => {
         // 'ExpressionAttributeValues' defines the value in the update expression
         UpdateExpression: "SET content = :content, thumbnail = :thumbnail, pdf = :pdf",
         ExpressionAttributeValues: {
-            ":content": data.content || null,
-            ":thumbnail": data.thumbnail || null,
-            ":pdf": data.pdf || null
+            // ":content": data.content || null,
+            // ":thumbnail": data.thumbnail || null,
+            // ":pdf": data.pdf || null
+
+            ":resumeName": data.resumeName || null,
+            ":appState": data.appState || null,
+            ":modified": Date.now()
         },
         // 'ReturnValues' specifies if and how to return the item's attributes,
         // where ALL_NEW returns all attributes of the item after the update; you
