@@ -12,7 +12,7 @@ export const main = handler(async (event, context) => {
         },
         // 'UpdateExpression' defines the attributes to be updated
         // 'ExpressionAttributeValues' defines the value in the update expression
-        UpdateExpression: "SET content = :content, thumbnail = :thumbnail, pdf = :pdf",
+        UpdateExpression: "SET resumeName = :resumeName, appState = :appState, modified = :modified",
         ExpressionAttributeValues: {
             // ":content": data.content || null,
             // ":thumbnail": data.thumbnail || null,
