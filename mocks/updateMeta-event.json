@@ -1,0 +1,11 @@
+{
+    "body": "{\"appState\":\"brave new world\"}",
+    "pathParameters": {
+        "id": "META#USER-SUB-1234"
+    },    
+    "requestContext": {
+      "identity": {
+        "cognitoIdentityId": "USER-SUB-1234"
+      }
+    }
+  }

@@ -70,8 +70,8 @@ functions:
           path: resume
           method: get
           cors: true
-          authorizer: aws_iam
-  
+          authorizer: aws_iam    
+
   update:
     handler: api/update.main
     events:
@@ -101,7 +101,34 @@ functions:
           cors: true
           authorizer: aws_iam
     timeout: 30
-    memorySize: 2048    
+    memorySize: 2048
+
+  createMeta:
+    handler: api/createMeta.main
+    events:
+      - http:
+          path: meta
+          method: post
+          cors: true
+          authorizer: aws_iam
+
+  listMeta:
+    handler: api/listMeta.main
+    events:
+      - http:
+          path: meta
+          method: get
+          cors: true
+          authorizer: aws_iam
+
+  updateMeta:
+    handler: api/updateMeta.main
+    events:
+      - http:
+          path: meta
+          method: put
+          cors: true
+          authorizer: aws_iam
 
 # Create our resources with separate CloudFormation templates
 resources:

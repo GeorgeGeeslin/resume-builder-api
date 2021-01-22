@@ -8,7 +8,15 @@ export default function handler(lambda) {
         statusCode = 200;
       } catch (e) {
         body = { error: e.message };
-        statusCode = 500;
+
+        // Set statusCode
+        switch (e.message) {
+          case "Item not found.":
+            statusCode = 404;
+            break;
+          default:
+            statusCode = 500;
+        }
       }
 
       // Return HTTP response
