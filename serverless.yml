@@ -130,6 +130,15 @@ functions:
           cors: true
           authorizer: aws_iam
 
+  nuke:
+    handler: api/nuke.main
+    events:
+      - http:
+          path: nuke
+          method: delete
+          cors: true
+          authorizer: aws_iam        
+
 # Create our resources with separate CloudFormation templates
 resources:
   # API Gateway Errors

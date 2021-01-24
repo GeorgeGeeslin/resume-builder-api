@@ -20,7 +20,7 @@ export const main = handler(async (event, context) => {
             resumeName: data.resumeName,
             appState: data.appState,
             thumbnail: data.thumbnail,
-            createdAt: ts,
+            created: ts,
             modified: ts
         },
     };
