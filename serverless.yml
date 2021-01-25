@@ -130,14 +130,15 @@ functions:
           cors: true
           authorizer: aws_iam
 
-  nuke:
-    handler: api/nuke.main
+  deleteMeta:
+    handler: api/deleteMeta.main
     events:
       - http:
-          path: nuke
+          path: meta
           method: delete
           cors: true
-          authorizer: aws_iam        
+          authorizer: aws_iam
+      
 
 # Create our resources with separate CloudFormation templates
 resources:
