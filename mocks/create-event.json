@@ -1,5 +1,5 @@
 {
-  "body": "{\"content\":\"hello world\",\"thumbnail\":\"hello.jpg\",\"pdf\":\"hello.pdf\"}",
+  "body": "{\"resumeName\":\"new resume\",\"resumeContent\":\"hello world\",\"thumbnail\":\"base64pngstring\"}",
   "requestContext": {
     "identity": {
       "cognitoIdentityId": "USER-SUB-1234"

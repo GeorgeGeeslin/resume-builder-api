@@ -18,7 +18,7 @@ export const main = handler(async (event, context) => {
             // pdf: data.pdf, // Parsed from request body
 
             resumeName: data.resumeName,
-            appState: data.appState,
+            resumeContent: data.resumeContent,
             thumbnail: data.thumbnail,
             created: ts,
             modified: ts

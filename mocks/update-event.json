@@ -1,7 +1,7 @@
 {
-  "body": "{\"content\":\"new world\",\"thumbnail\":\"new.jpg\",\"pdf\":\"new.pdf\"}",
+  "body": "{\"resumeName\":\"updated resume\",\"resumeContent\":\"updated world\",\"thumbnail\":\"updatedbase64pngstring\"}",
   "pathParameters": {
-      "id": "b7919160-465f-11eb-bd5e-a718bf7870de"
+      "id": "RESUME#fd85dcb0-6a92-11eb-8946-113d2bed40d5"
   },
   "requestContext": {
     "identity": {
