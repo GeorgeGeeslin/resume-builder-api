@@ -12,9 +12,10 @@ export const main = handler(async (event, context) => {
         },
         // 'UpdateExpression' defines the attributes to be updated
         // 'ExpressionAttributeValues' defines the value in the update expression
-        UpdateExpression: "SET appState = :appState, modified = :modified",
+        UpdateExpression: "SET resumeContent = :resumeContent, lastResume = :lastResume, modified = :modified",
         ExpressionAttributeValues: {
-            ":appState": data.appState || null,
+            ":resumeContent": data.resumeContent || null,
+            ":lastResume": data.lastResume || null,
             ":modified": Date.now()
         },
         // 'ReturnValues' specifies if and how to return the item's attributes,

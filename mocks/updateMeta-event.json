@@ -1,5 +1,5 @@
 {
-    "body": "{\"appState\":\"brave new world\"}",
+    "body": "{\"resumeContent\":\"new world\",\"lastResume\":\"RESUME#5678\"}",
     "pathParameters": {
         "id": "META#USER-SUB-1234"
     },    

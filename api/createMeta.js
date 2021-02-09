@@ -12,7 +12,8 @@ export const main = handler(async(event, context) => {
             // The attributes of the item to be created
             userId: event.requestContext.identity.cognitoIdentityId, // The id of the author
             resumeId: `META#${event.requestContext.identity.cognitoIdentityId}`,
-            appState: data.appState,
+            lastResume: data.lastResume,
+            resumeContent: data.resumeContent,
             createdAt: ts,
             modified: ts
         }
