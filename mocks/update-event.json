@@ -1,7 +1,7 @@
 {
   "body": "{\"resumeName\":\"updated resume\",\"resumeContent\":\"updated world\",\"thumbnail\":\"updatedbase64pngstring\"}",
   "pathParameters": {
-      "id": "RESUME#fd85dcb0-6a92-11eb-8946-113d2bed40d5"
+      "id": "RESUME%23572389a0-6b4e-11eb-adee-85dc73806b46"
   },
   "requestContext": {
     "identity": {
