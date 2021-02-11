@@ -12,7 +12,7 @@ export const main = handler(async (event, context) => {
         },
         // 'UpdateExpression' defines the attributes to be updated
         // 'ExpressionAttributeValues' defines the value in the update expression
-        UpdateExpression: "SET resumeName = :resumeName, resumeContent = :resumeContent, thumbnail = :thumbnail, modified = :modified",
+        UpdateExpression: "SET resumeContent = :resumeContent, thumbnail = :thumbnail, modified = :modified",
         ExpressionAttributeValues: {
             ":resumeContent": data.resumeContent || null,
             ":thumbnail": data.thumbnail || null,
