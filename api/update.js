@@ -8,17 +8,12 @@ export const main = handler(async (event, context) => {
         // 'Key' defines the partition key and sort key of the item to be updated
         Key: {
             userId: event.requestContext.identity.cognitoIdentityId,
-            resumeId: decodeURIComponent(event.pathParameters.id)
+            resumeId: event.pathParameters.id
         },
         // 'UpdateExpression' defines the attributes to be updated
         // 'ExpressionAttributeValues' defines the value in the update expression
         UpdateExpression: "SET resumeName = :resumeName, resumeContent = :resumeContent, thumbnail = :thumbnail, modified = :modified",
         ExpressionAttributeValues: {
-            // ":content": data.content || null,
-            // ":thumbnail": data.thumbnail || null,
-            // ":pdf": data.pdf || null
-
-            ":resumeName": data.resumeName || null,
             ":resumeContent": data.resumeContent || null,
             ":thumbnail": data.thumbnail || null,
             ":modified": Date.now()

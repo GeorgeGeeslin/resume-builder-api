@@ -12,12 +12,7 @@ export const main = handler(async (event, context) => {
         Item: {
             // The attributes of the item to be created
             userId: event.requestContext.identity.cognitoIdentityId, // The id of the author
-            resumeId: "RESUME#" + uuid.v1(), // A unique uuid
-            // content: data.content, // Parsed from request body
-            // thumbnail: data.thumbnail, // Parsed from request body
-            // pdf: data.pdf, // Parsed from request body
-
-            resumeName: data.resumeName,
+            resumeId: "RESUME-" + uuid.v1(), // A unique uuid
             resumeContent: data.resumeContent,
             thumbnail: data.thumbnail,
             created: ts,

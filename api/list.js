@@ -12,7 +12,7 @@ export const main = handler(async (event, context) => {
         // - ':userId': defines 'userId' to be the id of the author
         ExpressionAttributeValues: {
             ":userId": event.requestContext.identity.cognitoIdentityId,
-            ":resumeId": "RESUME#"
+            ":resumeId": "RESUME-"
         }
     };
 

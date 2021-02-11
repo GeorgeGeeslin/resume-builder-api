@@ -7,7 +7,7 @@ export const main = handler(async (event, context) => {
         KeyConditionExpression: "userId = :userId and resumeId = :resumeId",
         ExpressionAttributeValues: {
             ":userId": event.requestContext.identity.cognitoIdentityId,
-            ":resumeId": `META#${event.requestContext.identity.cognitoIdentityId}`
+            ":resumeId": `META-${event.requestContext.identity.cognitoIdentityId}`
         }
     };
 
