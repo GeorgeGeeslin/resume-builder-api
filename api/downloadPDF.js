@@ -6,6 +6,10 @@ export const main = handler(async (event, context) => {
     // get POST body.
     const html = JSON.parse(event.body);
 
+    // options
+    const title = event.body.resumeName;
+    const pageRange = event.pageRange ? event.pageRange : '1-2';
+
     //Create browser object
     const browser = await chromium.puppeteer.launch({
         headless: true,
@@ -29,7 +33,10 @@ export const main = handler(async (event, context) => {
                 left: '0.5in',
                 right: '0.5in'
             },
-            pageRanges: '1-2'
+            pageRanges: pageRange,
+            headerTemplate: {
+                title
+            }
         }
     );
 

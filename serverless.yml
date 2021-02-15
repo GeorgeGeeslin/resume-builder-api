@@ -103,6 +103,20 @@ functions:
     timeout: 30
     memorySize: 2048
 
+  screenshot:
+    handler: api/screenshot.main
+    layers:
+      - arn:aws:lambda:us-east-1:584518215840:layer:chrome-aws-lambda:1
+    events:
+      - http:
+          path: resume/screenshot
+          method: post
+          cors: true
+          authorizer: aws_iam
+    timeout: 30
+    memorySize: 2048            
+
+
   createMeta:
     handler: api/createMeta.main
     events:
