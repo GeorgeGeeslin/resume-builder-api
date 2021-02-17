@@ -4,10 +4,9 @@ import handler from "../libs/handler-lib";
 export const main = handler(async (event, context) => {
 
     // get POST body.
-    const html = JSON.parse(event.body);
+    const data = JSON.parse(event.body);
 
     // options
-    const title = event.body.resumeName;
     const pageRange = event.pageRange ? event.pageRange : '1-2';
 
     //Create browser object
@@ -21,7 +20,7 @@ export const main = handler(async (event, context) => {
     const page = await browser.newPage();
 
     //Build page from html string.
-    await page.setContent(html.data);
+    await page.setContent(data.html);
 
     // Create pdf file with puppeteer
     const pdf = await page.pdf(
@@ -33,10 +32,7 @@ export const main = handler(async (event, context) => {
                 left: '0.5in',
                 right: '0.5in'
             },
-            pageRanges: pageRange,
-            headerTemplate: {
-                title
-            }
+            pageRanges: pageRange
         }
     );
 
