@@ -70,7 +70,7 @@ functions:
           path: resume
           method: get
           cors: true
-          authorizer: aws_iam    
+          authorizer: aws_iam  
 
   update:
     handler: api/update.main
