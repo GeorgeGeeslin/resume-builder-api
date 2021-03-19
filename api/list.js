@@ -2,7 +2,7 @@ import handler from "../libs/handler-lib";
 import dynamoDb from "../libs/dynamodb-lib";
 
 export const main = handler(async (event, context) => {
-    let params = {
+    const params = {
         TableName: process.env.tableName,
         // 'KeyConditionExpression' defines the condition for the query
         // - 'userId = :userId': only return items with matching 'userId'
@@ -16,31 +16,7 @@ export const main = handler(async (event, context) => {
         }
     };
 
-    let items = [];
+    const result = await dynamoDb.query(params);
 
-    //Recursive function to accumulate all items if response is greater than 1MB limit.
-    async function getNextPage(lastEvaluatedKey, newParams) {
-
-        newParams.ExclusiveStartKey = lastEvaluatedKey;
-
-        const resumes = await dynamoDb.query(params);
-
-        items.push(...resumes.Items);
-
-        if (resumes.LastEvaluatedKey) {
-            getNextPage(resumes.LastEvaluatedKey, params);
-        } else {
-            return null;
-        }
-    };
-
-    const resumes = await dynamoDb.query(params);
-    items = resumes.Items;
-
-    if (resumes.LastEvaluatedKey) {
-        await getNextPage(resumes.LastEvaluatedKey, params);
-        return items;
-    } else {
-        return items;
-    }
+    return result.Items;
 });
