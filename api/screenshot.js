@@ -16,7 +16,7 @@ export const main = handler(async (event, context) => {
     //Create page object.
     const page = await browser.newPage();
 
-    page.setViewport({width: 816, height: 1056, deviceScaleFactor: 2});
+    page.setViewport({width: 816, height: 1056, deviceScaleFactor: 0.5});
 
     //Build page from html string.
     await page.setContent(html.data);
