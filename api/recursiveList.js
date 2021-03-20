@@ -19,30 +19,33 @@ export const main = handler(async (event, context) => {
     let items = [];
 
     //Recursive function to accumulate all items if response is greater than 1MB limit.
-    async function getNextPage(lastEvaluatedKey, params) {
-        
-        if (lastEvaluatedKey) {
-            params.ExclusiveStartKey = lastEvaluatedKey;
-        }
+    async function getNextPage(params, lastEvaluatedKey) {
+        let requestParams = { ...params };
+        if (lastEvaluatedKey) requestParams.ExclusiveStartKey = lastEvaluatedKey;
 
-        let resumes = await dynamoDb.query(params);
-        console.log(resumes.LastEvaluatedKey);
-        items.push(...resumes.Items);
+        const { LastEvaluatedKey, Items } = await dynamoDb.query(requestParams);
 
-        if (resumes.LastEvaluatedKey) {
-            getNextPage(resumes.LastEvaluatedKey, params);
-         } else {
+        items.push(...Items);
+
+        if (LastEvaluatedKey) {
+            await getNextPage(params, LastEvaluatedKey);
+        } else {
             return null;
-         }
+        }
     };
 
-    const resumes = await dynamoDb.query(params);
-    items = resumes.Items;
+    async function getResumeItems(params) {
+        const { LastEvaluatedKey, Items } = await dynamoDb.query(params);
+        items.push(...Items);
 
-    if (resumes.LastEvaluatedKey) {
-        await getNextPage(resumes.LastEvaluatedKey, params);
-        return items.length;
-    } else {
-        return items.length;
+        if (LastEvaluatedKey) {
+            await getNextPage(params, LastEvaluatedKey);
+        } else {
+            return null;
+        }
     }
+
+    await getResumeItems(params);
+
+    return items;
 });
