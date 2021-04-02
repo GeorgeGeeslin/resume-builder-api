@@ -109,7 +109,7 @@ functions:
           path: resume/download
           method: post
           cors: true
-          authorizer: aws_iam
+          # authorizer: aws_iam
     timeout: 30
     memorySize: 2048
 
